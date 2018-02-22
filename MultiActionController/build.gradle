@@ -1,0 +1,63 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+war.baseName = 'MultiActionController'
+
+ext {
+	springGroup = 'org.springframework'
+	springVersion = '4.0.0.RELEASE'
+}
+
+repositories {
+
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+
+	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+	compile 'javax.servlet:jstl:1.2'
+	
+	compile group: springGroup, name: 'spring-core', version: springVersion
+    compile group: springGroup, name: 'spring-aop', version: springVersion
+    compile group: springGroup, name: 'spring-expression', version: springVersion
+    compile group: springGroup, name: 'spring-beans', version: springVersion
+    compile group: springGroup, name: 'spring-context', version: springVersion
+    compile group: springGroup, name: 'spring-context-support', version: springVersion
+    compile group: springGroup, name: 'spring-web', version: springVersion
+    compile group: springGroup, name: 'spring-webmvc', version: springVersion
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
