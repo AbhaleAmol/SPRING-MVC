@@ -1,0 +1,84 @@
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	
+	dependencies {
+		classpath 'com.bmuschko:gradle-tomcat-plugin:2.4.2'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+war.baseName = 'SimpleURLHandlerMapping'
+
+ext {
+	springGroup = 'org.springframework'
+	springVersion = '4.0.0.RELEASE'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+
+	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+	compile 'javax.servlet:jstl:1.2'
+	
+	compile group: springGroup, name: 'spring-core', version: springVersion
+    compile group: springGroup, name: 'spring-aop', version: springVersion
+    compile group: springGroup, name: 'spring-expression', version: springVersion
+    compile group: springGroup, name: 'spring-beans', version: springVersion
+    compile group: springGroup, name: 'spring-context', version: springVersion
+    compile group: springGroup, name: 'spring-context-support', version: springVersion
+    compile group: springGroup, name: 'spring-tx', version: springVersion
+    compile group: springGroup, name: 'spring-jdbc', version: springVersion
+    compile group: springGroup, name: 'spring-orm', version: springVersion
+    compile group: springGroup, name: 'spring-web', version: springVersion
+    compile group: springGroup, name: 'spring-webmvc', version: springVersion
+    
+    def tomcatVersion = '8.5.16'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:8.5.2",
+           "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+
+tomcat {
+    httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
+    ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
+}
+
+//tomcatRun.contextPath = '/'
+//tomcatRunWar.contextPath = '/'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

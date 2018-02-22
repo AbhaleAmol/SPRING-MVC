@@ -1,0 +1,71 @@
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def tomcatHomeDir = '../../../../../../opt/apache-tomcat-8.5.28/webapps'
+
+//def tomcatHomeDir = '~/opt/apache-tomcat-8.5.25/webapps'
+
+war.baseName = 'SpringMVCWithGRADLE'
+
+ext {
+	springGroup = 'org.springframework'
+	springVersion = '4.0.0.RELEASE'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+
+	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+	compile 'javax.servlet:jstl:1.2'
+	
+	compile group: springGroup, name: 'spring-core', version: springVersion
+    compile group: springGroup, name: 'spring-aop', version: springVersion
+    compile group: springGroup, name: 'spring-expression', version: springVersion
+    compile group: springGroup, name: 'spring-beans', version: springVersion
+    compile group: springGroup, name: 'spring-context', version: springVersion
+    compile group: springGroup, name: 'spring-context-support', version: springVersion
+    compile group: springGroup, name: 'spring-tx', version: springVersion
+    compile group: springGroup, name: 'spring-jdbc', version: springVersion
+    compile group: springGroup, name: 'spring-orm', version: springVersion
+    compile group: springGroup, name: 'spring-web', version: springVersion
+    compile group: springGroup, name: 'spring-webmvc', version: springVersion
+}
+
+task deployWAR (dependsOn: war) {
+	copy {
+		from "build/libs"
+		into tomcatHomeDir
+		include "*.war"
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
